@@ -1,9 +1,13 @@
 // Class containing business services
 package com.example.Discovery_Rewards.Student;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@Service // marks class as a service provider
 public class StudentService {
     public List<Student> getStudents() {
         return List.of(
