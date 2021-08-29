@@ -18,7 +18,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping // Default endpoint
+    @GetMapping // client requests data
     public List<Student> getStudents() {
         return studentService.getStudents(); // returns students from StudentsService Class
     }
@@ -26,5 +26,11 @@ public class StudentController {
     @PostMapping // used to send data to server
     public void registerStudent(@RequestBody Student student) { // RequestBody: data sent by the client to your API
         studentService.addNewStudent(student);
+    }
+
+    // @PathVariable: handle template variables in the request URI mapping, and set them as method parameters
+    @DeleteMapping(path="{studentID}") // delete content from server
+    public void deleteStudent(@PathVariable("studentID") Long studentID) {
+        studentService.deleteStudent(studentID);
     }
 }
