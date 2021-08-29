@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service // marks class as a service provider
 public class StudentService {
@@ -22,6 +23,12 @@ public class StudentService {
     }
 
     public void addNewStudent(Student student) {
-        System.out.println(student);
+        // can have a value or null
+        Optional<Student> studentOptional = studentRepository.findStudentByEmail(student.getEmail());
+        if (studentOptional.isPresent()) { // if value exists
+            throw new IllegalStateException("Email is already taken");
+        } else {
+            studentRepository.save(student);
+        }
     }
 }
