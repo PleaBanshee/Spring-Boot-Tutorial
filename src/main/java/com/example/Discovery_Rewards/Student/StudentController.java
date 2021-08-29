@@ -28,6 +28,16 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
+    // test put method like this: api/v1/student/id?name=Elton&email=manofthe80s@gmail.com
+    @PutMapping(path="{studentID}") // update a data entity
+    public void updateStudent(
+            // @RequestParam: extract query parameters, form parameters etc.
+            @PathVariable("studentID") Long studentID,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email) {
+        studentService.updateStudents(studentID,name,email);
+    }
+
     // @PathVariable: handle template variables in the request URI mapping, and set them as method parameters
     @DeleteMapping(path="{studentID}") // delete content from server
     public void deleteStudent(@PathVariable("studentID") Long studentID) {
