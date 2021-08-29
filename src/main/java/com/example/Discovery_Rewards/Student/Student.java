@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Table // allows you to specify the details of the table that will be used to persist the entity in the database
 public class Student {
     @Id
-    @SequenceGenerator(name="student_seq",sequenceName="student_seq",allocationSize = 1)
+    @SequenceGenerator(name="student_seq",sequenceName="student_seq",allocationSize = 1) // allocationSize: increment by 1
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "student_seq")
     private Long id;
     private String name;
