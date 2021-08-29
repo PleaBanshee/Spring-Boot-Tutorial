@@ -1,7 +1,8 @@
 package com.example.Discovery_Rewards.Student;
 
-import javax.persistence.*;
+import javax.persistence.*; // allows you to change providers while keeping implementations persistent
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity // allows a class can be mapped to a table
 @Table // allows you to specify the details of the table that will be used to persist the entity in the database
@@ -13,25 +14,24 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+    @Transient // ignore a field to not persist in database
     private Integer age;
 
     public Student() {
 
     }
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
+    public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
-    public Student(String name, String email, LocalDate dob, Integer age) { // constructor for db creation of students
+    public Student(String name, String email, LocalDate dob) { // constructor for db creation of students
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Long getId() {
@@ -50,8 +50,9 @@ public class Student {
         return dob;
     }
 
+    // returns current age
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob,LocalDate.now()).getYears();
     }
 
     public void setId(Long id) {
