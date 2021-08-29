@@ -1,4 +1,6 @@
 package com.example.Discovery_Rewards.Student;
+// To package application, run java -jar Discovery_Rewards-0.0.1-SNAPSHOT.jar in terminal from the target directory in this project
+// Run java -jar Discovery_Rewards-0.0.1-SNAPSHOT.jar --server.port={portNum} to run app on a different port
 
 import javax.persistence.*; // allows you to change providers while keeping implementations persistent
 import java.time.LocalDate;
